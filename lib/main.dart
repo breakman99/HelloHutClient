@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'src/feature/mytest1_page.dart';
 import 'src/feature/generator_page.dart';
 import 'src/feature/favorite_page.dart';
-import 'src/feature/main_page_feature/presentation.dart';
+import 'src/feature/main_page_feature/presentation/app_bar.dart';
 
 void main() {
   runApp(MyApp());
@@ -94,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    var color = Theme.of(context).colorScheme;
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
         appBar: HelloHutAppBar(
@@ -103,10 +103,42 @@ class _MyHomePageState extends State<MyHomePage> {
             radius: 16.0,
             //backgroundImage: AssetImage('assets/images/profile.jpg'),
           ),
-          trailing: Icon(Icons.add, color: Colors.blue),
+          trailing: Icon(Icons.add, color: color.primary),
           onTrailingPressed: () {
             // 点击右侧按钮时的处理
           },
+        ),
+        drawer: Drawer(
+          backgroundColor: color.onInverseSurface,
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: color.primaryContainer,
+                ),
+                child: Text(
+                  'Handle Ex',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 24,
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: Icon(Icons.message),
+                title: Text('Messages'),
+              ),
+              ListTile(
+                leading: Icon(Icons.account_circle),
+                title: Text('Profile'),
+              ),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text('Settings'),
+              ),
+            ],
+          ),
         ),
         body: Container(
             color: Theme.of(context).colorScheme.primaryContainer,
@@ -132,8 +164,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
           currentIndex: _currentIndex,
           onTap: _switchPage,
-          selectedItemColor: theme.colorScheme.onPrimaryContainer,
-          unselectedItemColor: theme.colorScheme.outline,
+          selectedItemColor: color.onPrimaryContainer,
+          unselectedItemColor: color.outline,
         ),
       );
     });
