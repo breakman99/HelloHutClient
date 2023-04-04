@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'src/feature/mytest1_page.dart';
 import 'src/feature/generator_page.dart';
 import 'src/feature/favorite_page.dart';
+import 'src/feature/main_page_feature/presentation.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         title: 'My First Application',
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         ),
         home: MyHomePage(),
       ),
@@ -63,6 +64,28 @@ class _MyHomePageState extends State<MyHomePage> {
     Placeholder(),
   ];
 
+  final _scrollController = ScrollController();
+  double _appBarOpacity = 0.0;
+  final _appBarMaxOpacity = 0.9;
+  final _appBarMinOpacity = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      setState(() {
+        _appBarOpacity = (_scrollController.offset / 200.0)
+            .clamp(_appBarMinOpacity, _appBarMaxOpacity);
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   void _switchPage(int index) {
     setState(() {
       _currentIndex = index;
@@ -74,47 +97,22 @@ class _MyHomePageState extends State<MyHomePage> {
     final theme = Theme.of(context);
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
+        appBar: HelloHutAppBar(
+          title: 'HelloHut',
+          leading: CircleAvatar(
+            radius: 16.0,
+            //backgroundImage: AssetImage('assets/images/profile.jpg'),
+          ),
+          trailing: Icon(Icons.add, color: Colors.blue),
+          onTrailingPressed: () {
+            // 点击右侧按钮时的处理
+          },
+        ),
         body: Container(
             color: Theme.of(context).colorScheme.primaryContainer,
             child: _pages.elementAt(_currentIndex)),
-        // body: Row(
-        //   children: [
-        //     SafeArea(
-        //       child: NavigationRail(
-        //         extended: constraints.maxWidth >= 600,
-        //         destinations: [
-        //           NavigationRailDestination(
-        //             icon: Icon(Icons.home),
-        //             label: Text('Home'),
-        //           ),
-        //           NavigationRailDestination(
-        //             icon: Icon(Icons.favorite),
-        //             label: Text('Favorites'),
-        //           ),
-        //           NavigationRailDestination(
-        //             icon: Icon(Icons.abc),
-        //             label: Text('Test Page 1'),
-        //           ),
-        //         ],
-        //         selectedIndex: selectedIndex,
-        //         onDestinationSelected: (value) {
-        //           setState(() {
-        //             selectedIndex = value;
-        //           });
-        //         },
-        //       ),
-        //     ),
-        //     Expanded(
-        //       child: Container(
-        //           color: Theme.of(context).colorScheme.primaryContainer,
-        //           child: page),
-        //     ),
-        //   ],
-        // ),
         bottomNavigationBar: BottomNavigationBar(
-          // 创建一个底部导航栏
           items: const <BottomNavigationBarItem>[
-            // 提供四个图标按钮
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
