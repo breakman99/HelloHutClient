@@ -1,5 +1,6 @@
 class Post {
   final String username;
+  final String school;
   final String content;
   final String userImageUrl;
   final String postImageUrl;
@@ -8,6 +9,7 @@ class Post {
 
   Post({
     required this.username,
+    required this.school,
     required this.content,
     required this.userImageUrl,
     required this.postImageUrl,

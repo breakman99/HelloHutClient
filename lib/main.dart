@@ -7,6 +7,7 @@ import 'src/feature/favorite_page.dart';
 import 'src/feature/main_page_feature/presentation/app_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'src/feature/main_page_feature/presentation/main_page.dart';
+import 'src/feature/main_page_feature/presentation/left_draw.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         title: 'Hello',
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+          //colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           textTheme: GoogleFonts.interTextTheme(
             Theme.of(context).textTheme,
           ),
@@ -121,106 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
             // 点击右侧按钮时的处理
           },
         ),
-        drawer: Drawer(
-          backgroundColor: color.background,
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              // DrawerHeader(
-              //   decoration: BoxDecoration(
-              //     color: color.primaryContainer,
-              //   ),
-              //   child: Text(
-              //     'Handle Ex',
-              //     style: TextStyle(
-              //       color: Colors.black,
-              //       fontSize: 24,
-              //     ),
-              //   ),
-              // ),
-              UserAccountsDrawerHeader(
-                currentAccountPicture: CircleAvatar(
-                  radius: 16.0,
-                  backgroundImage: AssetImage('images/lake.jpg'),
-                ),
-                accountName: Text("John Doe",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    )),
-                accountEmail: Text("johndoe@example.com",
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.normal,
-                      fontSize: 13,
-                    )),
-                // currentAccountPicture: CircleAvatar(
-                //   backgroundImage: AssetImage('assets/images/profile.jpg'),
-                // ),
-                decoration: BoxDecoration(
-                  color: color.background,
-                ),
-              ),
-              ListTile(
-                leading: Icon(
-                  Icons.message,
-                  color: Colors.black,
-                ),
-                title: Text(
-                  'Messages',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              ListTile(
-                leading: Icon(
-                  Icons.account_circle,
-                  color: Colors.black,
-                ),
-                title: Text(
-                  'Profile',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              ListTile(
-                leading: Icon(
-                  Icons.settings,
-                  color: Colors.black,
-                ),
-                title: Text(
-                  'Settings',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.change_history,
-                  color: Colors.black,
-                ),
-                title: const Text(
-                  'Change history',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                onTap: () {
-                  // change app state...
-                  Navigator.pop(context); // close the drawer
-                },
-              ),
-            ],
-          ),
-        ),
+        drawer: MyMainDrawer(),
         body: Container(
             color: Theme.of(context).colorScheme.background,
             child: _pages.elementAt(_currentIndex)),
