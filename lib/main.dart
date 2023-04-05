@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
-        title: 'My First Application',
+        title: 'Hello Hut',
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
@@ -64,6 +64,8 @@ class _MyHomePageState extends State<MyHomePage> {
     Placeholder(),
   ];
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   final _scrollController = ScrollController();
   double _appBarOpacity = 0.0;
   final _appBarMaxOpacity = 0.9;
@@ -99,15 +101,26 @@ class _MyHomePageState extends State<MyHomePage> {
       return Scaffold(
         appBar: HelloHutAppBar(
           title: 'HelloHut',
-          leading: CircleAvatar(
-            radius: 16.0,
-            //backgroundImage: AssetImage('assets/images/profile.jpg'),
+          leading: GestureDetector(
+            onTap: () {
+              _scaffoldKey.currentState!.openDrawer();
+            },
+            child: CircleAvatar(
+              radius: 16.0,
+              //backgroundImage: AssetImage('assets/images/profile.jpg'),
+            ),
           ),
           trailing: Icon(Icons.add, color: color.primary),
           onTrailingPressed: () {
             // 点击右侧按钮时的处理
           },
         ),
+        key: _scaffoldKey,
+        // appBar: AppBar(
+        //   leading: IconButton(
+        //       onPressed: () => _scaffoldKey.currentState!.openDrawer(),
+        //       icon: Icon(Icons.hive)),
+        // ),
         drawer: Drawer(
           backgroundColor: color.onInverseSurface,
           child: ListView(
@@ -136,6 +149,14 @@ class _MyHomePageState extends State<MyHomePage> {
               ListTile(
                 leading: Icon(Icons.settings),
                 title: Text('Settings'),
+              ),
+              ListTile(
+                leading: const Icon(Icons.change_history),
+                title: const Text('Change history'),
+                onTap: () {
+                  // change app state...
+                  Navigator.pop(context); // close the drawer
+                },
               ),
             ],
           ),
