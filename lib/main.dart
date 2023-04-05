@@ -5,6 +5,8 @@ import 'src/feature/mytest1_page.dart';
 import 'src/feature/generator_page.dart';
 import 'src/feature/favorite_page.dart';
 import 'src/feature/main_page_feature/presentation/app_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'src/feature/main_page_feature/presentation/main_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,10 +20,13 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
-        title: 'Hello Hut',
+        title: 'Hello',
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+          textTheme: GoogleFonts.interTextTheme(
+            Theme.of(context).textTheme,
+          ),
         ),
         home: MyHomePage(),
       ),
@@ -58,10 +63,10 @@ class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
 
   static final _pages = <Widget>[
-    GeneratorPage(),
-    FavoritesPage(),
+    MainPageWidget(),
     MyTestWidget1(),
-    Placeholder(),
+    FavoritesPage(),
+    GeneratorPage(),
   ];
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -99,60 +104,115 @@ class _MyHomePageState extends State<MyHomePage> {
     var color = Theme.of(context).colorScheme;
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
+        key: _scaffoldKey,
         appBar: HelloHutAppBar(
-          title: 'HelloHut',
+          title: 'Hello',
           leading: GestureDetector(
             onTap: () {
               _scaffoldKey.currentState!.openDrawer();
             },
             child: CircleAvatar(
               radius: 16.0,
-              //backgroundImage: AssetImage('assets/images/profile.jpg'),
+              backgroundImage: AssetImage('images/lake.jpg'),
             ),
           ),
-          trailing: Icon(Icons.add, color: color.primary),
+          trailing: Icon(Icons.add, color: color.onPrimary),
           onTrailingPressed: () {
             // 点击右侧按钮时的处理
           },
         ),
-        key: _scaffoldKey,
-        // appBar: AppBar(
-        //   leading: IconButton(
-        //       onPressed: () => _scaffoldKey.currentState!.openDrawer(),
-        //       icon: Icon(Icons.hive)),
-        // ),
         drawer: Drawer(
-          backgroundColor: color.onInverseSurface,
+          backgroundColor: color.background,
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
-              DrawerHeader(
-                decoration: BoxDecoration(
-                  color: color.primaryContainer,
+              // DrawerHeader(
+              //   decoration: BoxDecoration(
+              //     color: color.primaryContainer,
+              //   ),
+              //   child: Text(
+              //     'Handle Ex',
+              //     style: TextStyle(
+              //       color: Colors.black,
+              //       fontSize: 24,
+              //     ),
+              //   ),
+              // ),
+              UserAccountsDrawerHeader(
+                currentAccountPicture: CircleAvatar(
+                  radius: 16.0,
+                  backgroundImage: AssetImage('images/lake.jpg'),
                 ),
-                child: Text(
-                  'Handle Ex',
+                accountName: Text("John Doe",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    )),
+                accountEmail: Text("johndoe@example.com",
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.normal,
+                      fontSize: 13,
+                    )),
+                // currentAccountPicture: CircleAvatar(
+                //   backgroundImage: AssetImage('assets/images/profile.jpg'),
+                // ),
+                decoration: BoxDecoration(
+                  color: color.background,
+                ),
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.message,
+                  color: Colors.black,
+                ),
+                title: Text(
+                  'Messages',
                   style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 24,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.message),
-                title: Text('Messages'),
+                leading: Icon(
+                  Icons.account_circle,
+                  color: Colors.black,
+                ),
+                title: Text(
+                  'Profile',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
               ListTile(
-                leading: Icon(Icons.account_circle),
-                title: Text('Profile'),
+                leading: Icon(
+                  Icons.settings,
+                  color: Colors.black,
+                ),
+                title: Text(
+                  'Settings',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
               ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('Settings'),
-              ),
-              ListTile(
-                leading: const Icon(Icons.change_history),
-                title: const Text('Change history'),
+                leading: const Icon(
+                  Icons.change_history,
+                  color: Colors.black,
+                ),
+                title: const Text(
+                  'Change history',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 onTap: () {
                   // change app state...
                   Navigator.pop(context); // close the drawer
@@ -162,7 +222,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         body: Container(
-            color: Theme.of(context).colorScheme.primaryContainer,
+            color: Theme.of(context).colorScheme.background,
             child: _pages.elementAt(_currentIndex)),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[

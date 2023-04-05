@@ -15,7 +15,7 @@ class HelloHutAppBar extends StatelessWidget with PreferredSizeWidget {
     this.leading,
     this.trailing,
     this.onTrailingPressed,
-    this.elevation = 4.0,
+    this.elevation = 0,
     this.height = kToolbarHeight,
   }) : super(key: key);
 
@@ -40,7 +40,7 @@ class HelloHutAppBar extends StatelessWidget with PreferredSizeWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(16.0),
+                    borderRadius: BorderRadius.circular(35.0),
                   ),
                   child: Row(
                     children: [
@@ -57,7 +57,7 @@ class HelloHutAppBar extends StatelessWidget with PreferredSizeWidget {
                             vertical: 12.0,
                             horizontal: 4.0,
                           ),
-                          placeholder: 'Search HelloHut',
+                          placeholder: 'Search Hello',
                           cursorColor: Colors.grey,
                         ),
                       ),
