@@ -56,19 +56,6 @@ class MyMainDrawer extends StatelessWidget {
           // ),
           ListTile(
             leading: Icon(
-              Icons.message,
-              color: Colors.black,
-            ),
-            title: Text(
-              'Messages',
-              style: TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          ListTile(
-            leading: Icon(
               Icons.account_circle,
               color: Colors.black,
             ),
@@ -82,11 +69,11 @@ class MyMainDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(
-              Icons.settings,
+              Icons.message,
               color: Colors.black,
             ),
             title: Text(
-              'Settings',
+              'Messages',
               style: TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold,
@@ -109,6 +96,19 @@ class MyMainDrawer extends StatelessWidget {
               // change app state...
               Navigator.pop(context); // close the drawer
             },
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.settings,
+              color: Colors.black,
+            ),
+            title: Text(
+              'Settings',
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ],
       ),

@@ -1,11 +1,11 @@
 import 'package:english_words/english_words.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'src/feature/mytest1_page.dart';
 import 'src/feature/generator_page.dart';
 import 'src/feature/favorite_page.dart';
 import 'src/feature/main_page_feature/presentation/app_bar.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'src/feature/main_page_feature/presentation/main_page.dart';
 import 'src/feature/main_page_feature/presentation/left_draw.dart';
 
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         title: 'Hello',
         theme: ThemeData(
           useMaterial3: true,
-          //colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           textTheme: GoogleFonts.interTextTheme(
             Theme.of(context).textTheme,
           ),
