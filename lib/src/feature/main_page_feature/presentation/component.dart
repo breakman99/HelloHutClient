@@ -225,3 +225,53 @@ class _CollectButtonState extends State<CollectButton> {
     );
   }
 }
+
+//侧边栏的个人信息展示widget
+class ProfileHeader extends StatelessWidget {
+  final String name;
+  final String email;
+  final String imageUrl;
+
+  const ProfileHeader(
+      {Key? key,
+      required this.name,
+      required this.email,
+      required this.imageUrl})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CircleAvatar(
+              radius: 48,
+              backgroundImage: AssetImage(imageUrl),
+            ),
+            SizedBox(height: 16),
+            Text(
+              name,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              email,
+              style: TextStyle(
+                color: Colors.grey,
+                fontWeight: FontWeight.normal,
+                fontSize: 13,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'component.dart';
 
 class MyMainDrawer extends StatelessWidget {
   const MyMainDrawer({super.key});
@@ -7,53 +8,22 @@ class MyMainDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     var color = Theme.of(context).colorScheme;
     return Drawer(
-      backgroundColor: color.background,
+      backgroundColor: color.surface,
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          // DrawerHeader(
-          //   decoration: BoxDecoration(
-          //     color: color.primaryContainer,
-          //   ),
-          //   child: Text(
-          //     'Handle Ex',
-          //     style: TextStyle(
-          //       color: Colors.black,
-          //       fontSize: 24,
-          //     ),
-          //   ),
-          // ),
-          UserAccountsDrawerHeader(
-            currentAccountPicture: CircleAvatar(
-              radius: 16.0,
-              backgroundImage: AssetImage('images/lake.jpg'),
-            ),
-            accountName: Text("John Doe",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                )),
-            accountEmail: Text("johndoe@example.com",
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontWeight: FontWeight.normal,
-                  fontSize: 13,
-                )),
-            // currentAccountPicture: CircleAvatar(
-            //   backgroundImage: AssetImage('assets/images/profile.jpg'),
-            // ),
-            decoration: BoxDecoration(
-              color: color.background,
-            ),
+          ProfileHeader(
+            name: 'John Doe',
+            email: 'johndoe@example.com',
+            imageUrl: 'images/myself.bmp',
           ),
-          // Divider(
-          //   color: Colors.black54, //设置分割线的颜色
-          //   height: 10, //设置分割线的高度间距
-          //   thickness: 0.2, //设置分割线的厚度
-          //   indent: 20, //设置分割线的起始缩进
-          //   endIndent: 20, //设置分割线的结束缩进
-          // ),
+          Divider(
+            color: Colors.grey, //设置分割线的颜色
+            height: 0, //设置分割线的高度间距
+            thickness: 0.2, //设置分割线的厚度
+            indent: 20, //设置分割线的起始缩进
+            endIndent: 20, //设置分割线的结束缩进
+          ),
           ListTile(
             leading: Icon(
               Icons.account_circle,

@@ -114,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
             },
             child: CircleAvatar(
               radius: 16.0,
-              backgroundImage: AssetImage('images/lake.jpg'),
+              backgroundImage: AssetImage('images/myself.bmp'),
             ),
           ),
           trailing: Icon(Icons.add, color: color.onPrimary),

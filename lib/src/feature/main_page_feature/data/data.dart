@@ -12,7 +12,7 @@ class PostData {
   );
   static final List<Post> posts = [
     Post(
-      username: 'HanXu',
+      username: 'HandleExe',
       school: "野鸡大专人工智能学院",
       content: "真想考个研究生啊, 唉, 我好废物, 我好羡慕",
       userImageUrl: 'images/myself.bmp',
@@ -31,7 +31,7 @@ class PostData {
       comments: 9,
     ),
     Post(
-      username: 'dcx',
+      username: 'der',
       school: "中南大学新能源学院",
       content: "哈哈, 就快下一阶段咯",
       userImageUrl: 'images/dp.bmp',
