@@ -123,9 +123,18 @@ class _MyHomePageState extends State<MyHomePage> {
           },
         ),
         drawer: MyMainDrawer(),
-        body: Container(
-            color: Theme.of(context).colorScheme.background,
-            child: _pages.elementAt(_currentIndex)),
+        body: Builder(builder: (context) {
+          return GestureDetector(
+            onHorizontalDragUpdate: (details) {
+              if (details.delta.dx > 0) {
+                Scaffold.of(context).openDrawer();
+              }
+            },
+            child: Container(
+                color: Theme.of(context).colorScheme.background,
+                child: _pages.elementAt(_currentIndex)),
+          );
+        }),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(

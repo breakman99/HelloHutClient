@@ -21,15 +21,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text('Hello Hut'),
-      ),
+      appBar: PostDetailAppBar(),
       body: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Card(
@@ -45,6 +37,39 @@ class _PostDetailPageState extends State<PostDetailPage> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class PostDetailAppBar extends StatelessWidget with PreferredSizeWidget {
+  const PostDetailAppBar({
+    super.key,
+  });
+
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          title: Text('Hello Hut'),
+        ),
+        Divider(
+          color: Colors.grey, //设置分割线的颜色
+          height: 0, //设置分割线的高度间距
+          thickness: 0.1, //设置分割线的厚度
+          indent: 0, //设置分割线的起始缩进
+          endIndent: 0, //设置分割线的结束缩进
+        ),
+      ],
     );
   }
 }

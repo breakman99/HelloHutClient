@@ -14,8 +14,8 @@ class MyMainDrawer extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: <Widget>[
             ProfileHeader(
-              name: 'John Doe',
-              email: 'johndoe@example.com',
+              name: 'HandleEx',
+              email: 'HandleEx@foxmail.com',
               imageUrl: 'images/myself.bmp',
             ),
             Divider(
