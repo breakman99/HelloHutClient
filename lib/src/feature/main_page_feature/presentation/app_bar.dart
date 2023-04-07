@@ -24,58 +24,60 @@ class HelloHutAppBar extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      elevation: elevation,
-      child: SizedBox(
-        height: height,
-        child: Row(
-          children: [
-            if (leading != null) ...[
-              SizedBox(width: 8.0),
-              leading!,
-            ],
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(35.0),
-                  ),
-                  child: Row(
-                    children: [
-                      SizedBox(width: 8.0),
-                      Icon(Icons.search, color: Colors.grey),
-                      SizedBox(width: 8.0),
-                      Expanded(
-                        child: CupertinoTextField(
-                          decoration: BoxDecoration(
-                            color: Colors.grey[200],
-                            borderRadius: BorderRadius.circular(16.0),
+    return SafeArea(
+      child: Material(
+        elevation: elevation,
+        child: SizedBox(
+          height: height,
+          child: Row(
+            children: [
+              if (leading != null) ...[
+                SizedBox(width: 8.0),
+                leading!,
+              ],
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(35.0),
+                    ),
+                    child: Row(
+                      children: [
+                        SizedBox(width: 8.0),
+                        Icon(Icons.search, color: Colors.grey),
+                        SizedBox(width: 8.0),
+                        Expanded(
+                          child: CupertinoTextField(
+                            decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              borderRadius: BorderRadius.circular(16.0),
+                            ),
+                            padding: EdgeInsets.symmetric(
+                              vertical: 12.0,
+                              horizontal: 4.0,
+                            ),
+                            placeholder: 'Search Hello',
+                            cursorColor: Colors.grey,
                           ),
-                          padding: EdgeInsets.symmetric(
-                            vertical: 12.0,
-                            horizontal: 4.0,
-                          ),
-                          placeholder: 'Search Hello',
-                          cursorColor: Colors.grey,
                         ),
-                      ),
-                      SizedBox(width: 8.0),
-                    ],
+                        SizedBox(width: 8.0),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            if (trailing != null) ...[
-              SizedBox(width: 8.0),
-              GestureDetector(
-                onTap: onTrailingPressed,
-                child: trailing!,
-              ),
-              SizedBox(width: 8.0),
+              if (trailing != null) ...[
+                SizedBox(width: 8.0),
+                GestureDetector(
+                  onTap: onTrailingPressed,
+                  child: trailing!,
+                ),
+                SizedBox(width: 8.0),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );
