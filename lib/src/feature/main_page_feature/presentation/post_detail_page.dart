@@ -20,19 +20,40 @@ class _PostDetailPageState extends State<PostDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Post> posts = PostData.Commentposts;
     return Scaffold(
       appBar: PostDetailAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(4.0),
+      // body: Padding(
+      //   padding: const EdgeInsets.all(4.0),
+      //   child: Card(
+      //     elevation: 0.7,
+      //     child: ListView(children: <Widget>[
+      //       PostBody(showCard: false, post: post),
+      //       CommentBody(),
+      //     ]),
+      //   ),
+      // ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 3, vertical: 2),
         child: Card(
           elevation: 0.7,
           child: Column(
             children: [
-              PostBody(
-                  showCard: false, post: post), // 使用 StatelessWidget 来构建帖子主体
-              Expanded(
-                child: CommentBody(), // 使用 StatefulWidget 来构建评论列表
+              Container(
+                padding: EdgeInsets.all(4.0),
+                child: PostBody(showCard: false, post: post),
               ),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: posts.length,
+                itemBuilder: (context, index) {
+                  Post post = posts[index];
+                  return CommentBody(
+                    commentData: post,
+                  );
+                },
+              )
             ],
           ),
         ),
@@ -62,125 +83,51 @@ class PostDetailAppBar extends StatelessWidget with PreferredSizeWidget {
           ),
           title: Text('Hello Hut'),
         ),
-        Divider(
-          color: Colors.grey, //设置分割线的颜色
-          height: 0, //设置分割线的高度间距
-          thickness: 0.1, //设置分割线的厚度
-          indent: 0, //设置分割线的起始缩进
-          endIndent: 0, //设置分割线的结束缩进
-        ),
       ],
     );
   }
 }
 
-class CommentBody extends StatefulWidget {
-  const CommentBody({
-    super.key,
-  });
+class CommentBody extends StatelessWidget {
+  final Post commentData;
 
-  @override
-  State<CommentBody> createState() => _CommentBodyState();
-}
+  const CommentBody({Key? key, required this.commentData}) : super(key: key);
 
-class _CommentBodyState extends State<CommentBody> {
+  //const CommentBody({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.all(2),
-      children: [
-        ListTile(
-          leading: Icon(
-            Icons.account_circle,
-            color: Colors.black,
-          ),
-          title: Text(
-            'test',
-            style: TextStyle(
-              fontSize: 15.0,
-              fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        color: Colors.white70, //Theme.of(context).colorScheme.surfaceVariant,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 3, vertical: 1),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '小胖',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+                Divider(
+                  color: Colors.grey, //设置分割线的颜色
+                  height: 8, //设置分割线的高度间距
+                  thickness: 0.2, //设置分割线的厚度
+                  indent: 0, //设置分割线的起始缩进
+                  endIndent: 0, //设置分割线的结束缩进
+                ),
+                Text('笑死了'),
+              ],
             ),
           ),
         ),
-        ListTile(
-          leading: Icon(
-            Icons.account_circle,
-            color: Colors.black,
-          ),
-          title: Text(
-            'test',
-            style: TextStyle(
-              fontSize: 15.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        ListTile(
-          leading: Icon(
-            Icons.account_circle,
-            color: Colors.black,
-          ),
-          title: Text(
-            'test',
-            style: TextStyle(
-              fontSize: 15.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        ListTile(
-          leading: Icon(
-            Icons.account_circle,
-            color: Colors.black,
-          ),
-          title: Text(
-            'test',
-            style: TextStyle(
-              fontSize: 15.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        ListTile(
-          leading: Icon(
-            Icons.account_circle,
-            color: Colors.black,
-          ),
-          title: Text(
-            'test',
-            style: TextStyle(
-              fontSize: 15.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        ListTile(
-          leading: Icon(
-            Icons.account_circle,
-            color: Colors.black,
-          ),
-          title: Text(
-            'test',
-            style: TextStyle(
-              fontSize: 15.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        ListTile(
-          leading: Icon(
-            Icons.account_circle,
-            color: Colors.black,
-          ),
-          title: Text(
-            'test',
-            style: TextStyle(
-              fontSize: 15.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ],
+      ),
     );
   }
 }

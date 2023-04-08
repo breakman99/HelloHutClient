@@ -6,6 +6,7 @@ class Post {
   final String postImageUrl;
   final int likes;
   final int comments;
+  final int type;
 
   Post({
     required this.username,
@@ -15,5 +16,6 @@ class Post {
     required this.postImageUrl,
     required this.likes,
     required this.comments,
+    required this.type,
   });
 }
