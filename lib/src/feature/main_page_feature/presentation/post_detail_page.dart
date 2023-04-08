@@ -98,9 +98,9 @@ class CommentBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(4.0),
       child: Card(
-        color: Colors.white70, //Theme.of(context).colorScheme.surfaceVariant,
+        color: Theme.of(context).colorScheme.secondaryContainer,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
