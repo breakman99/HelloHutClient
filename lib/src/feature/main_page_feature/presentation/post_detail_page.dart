@@ -261,6 +261,7 @@ class CustomListItemTwo extends StatelessWidget {
             // AspectRatio(
             //   aspectRatio: 1.0,
             //   child: thumbnail,
+            //   child: thumbnail,
             // ),
             thumbnail,
             Expanded(
@@ -294,7 +295,7 @@ class MyStatelessWidget extends StatelessWidget {
           thumbnail: Container(
             decoration: const BoxDecoration(color: Colors.pink),
           ),
-          title: 'Flutter 1.0 Launch',
+          title: '1Flutter 1.0 Launch',
           subtitle: 'Flutter continues to improve and expand its horizons. '
               'This text should max out at two lines and clip',
           author: 'Dash',
