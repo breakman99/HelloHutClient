@@ -8,6 +8,9 @@ import 'src/feature/favorite_page.dart';
 import 'src/feature/main_page_feature/presentation/app_bar.dart';
 import 'src/feature/main_page_feature/presentation/main_page.dart';
 import 'src/feature/main_page_feature/presentation/left_draw.dart';
+import 'src/feature/main_page_feature/data/data.dart';
+import 'src/feature/myself_page.dart';
+import 'src/feature/chat_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -66,8 +69,10 @@ class _MyHomePageState extends State<MyHomePage> {
   static final _pages = <Widget>[
     MainPageWidget(),
     MyTestWidget1(),
-    FavoritesPage(),
-    GeneratorPage(),
+    ChatListPage(),
+    MyselfProfilePage(
+      post: PostData.initPost,
+    ),
   ];
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
