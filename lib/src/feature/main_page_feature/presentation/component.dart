@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../domain/post_domain.dart';
-import "../data/data.dart";
+import '../../../domain/all_domain.dart';
+import '../../../constants/data.dart';
+import '../../myself_page.dart';
 
 class PostBody extends StatefulWidget {
   const PostBody({
@@ -25,8 +26,20 @@ class _PostBodyState extends State<PostBody> {
         SizedBox(
           height: 65,
           child: ListTile(
-            leading: CircleAvatar(
-              backgroundImage: AssetImage(widget.post.userImageUrl),
+            leading: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => MyselfProfilePage(
+                            user: widget.post.user,
+                            isSinglePage: true,
+                          )),
+                );
+              },
+              child: CircleAvatar(
+                backgroundImage: AssetImage(widget.post.userImageUrl),
+              ),
             ),
             title: Text(
               widget.post.username,

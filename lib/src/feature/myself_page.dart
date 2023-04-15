@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/src/feature/main_page_feature/domain/post_domain.dart';
-import "./main_page_feature/data/data.dart";
+import 'package:flutter_application_1/src/domain/all_domain.dart';
+import '../constants/data.dart';
 
 class MyselfProfilePage extends StatelessWidget {
-  final Post post;
-  MyselfProfilePage({required this.post});
+  final User user;
+  final bool isSinglePage;
+  MyselfProfilePage({
+    required this.user,
+    required this.isSinglePage,
+  });
 
   @override
   Widget build(BuildContext context) {
-    bool isSelf = post.username == "Null";
+    bool isSelf = (user.username == DefaultUser.myself.username);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -18,27 +22,29 @@ class MyselfProfilePage extends StatelessWidget {
               children: [
                 Image.asset(
                   // 个人背景图片
-                  'images/lake.jpg',
+                  user.postImageUrl,
                   height: 200,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
-                if (!isSelf)
+                // 返回按钮
+                if (isSinglePage)
                   Positioned(
                     top: 16,
                     left: 8,
                     child: IconButton(
-                      // 返回按钮
                       icon: Icon(Icons.arrow_back, color: Colors.white),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                     ),
                   ),
-                if (!isSelf)
+                // 更多按钮
+                if (isSinglePage)
                   Positioned(
                     top: 16,
                     right: 8,
                     child: IconButton(
-                      // 更多按钮
                       icon: Icon(Icons.more_horiz, color: Colors.white),
                       onPressed: () {},
                     ),
@@ -49,7 +55,7 @@ class MyselfProfilePage extends StatelessWidget {
                   child: CircleAvatar(
                     // 个人头像
                     radius: 48,
-                    backgroundImage: AssetImage('images/myself.bmp'),
+                    backgroundImage: AssetImage(user.userImageUrl),
                   ),
                 ),
                 if (isSelf)
@@ -71,16 +77,16 @@ class MyselfProfilePage extends StatelessWidget {
                 children: [
                   Text(
                     // 个人用户名
-                    'HandleEX',
+                    user.username,
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(height: 8),
                   Text(
                     // 个人简介
-                    'I wanna be a Google Software Engineer!',
+                    user.bio,
                     style: TextStyle(fontSize: 14),
                   ),
                   SizedBox(height: 16),
@@ -90,7 +96,7 @@ class MyselfProfilePage extends StatelessWidget {
                       Column(
                         children: [
                           Text(
-                            '100',
+                            "${user.followingCount}",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
@@ -106,7 +112,7 @@ class MyselfProfilePage extends StatelessWidget {
                       Column(
                         children: [
                           Text(
-                            '100',
+                            "${user.followersCount}",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
@@ -122,14 +128,14 @@ class MyselfProfilePage extends StatelessWidget {
                       Column(
                         children: [
                           Text(
-                            '100',
+                            "${user.postCount}",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
                             ),
                           ),
                           Text(
-                            'Tweets',
+                            "Posts",
                             style: TextStyle(color: Colors.grey),
                           ),
                         ],
@@ -137,23 +143,24 @@ class MyselfProfilePage extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 16),
-                  //if (!isSelf)
-                  Row(
-                    // 关注 & 发送消息按钮
-                    children: [
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          child: Text('Follow'),
+                  //关注 & 发消息 （自己的个人主页不显示）
+                  if (!isSelf)
+                    Row(
+                      // 关注 & 发送消息按钮
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: Text('Follow'),
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 16),
-                      OutlinedButton(
-                        onPressed: () {},
-                        child: Text('Message'),
-                      ),
-                    ],
-                  ),
+                        SizedBox(width: 16),
+                        OutlinedButton(
+                          onPressed: () {},
+                          child: Text('Message'),
+                        ),
+                      ],
+                    ),
                   SizedBox(height: 16),
                   Text(
                     'Photos and videos',
@@ -183,7 +190,7 @@ class MyselfProfilePage extends StatelessWidget {
                   ),
                   SizedBox(height: 16),
                   Text(
-                    'Liked tweets',
+                    'Liked posts',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,

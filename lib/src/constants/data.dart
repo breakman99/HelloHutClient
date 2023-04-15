@@ -1,4 +1,62 @@
-import '../domain/post_domain.dart';
+import '../domain/all_domain.dart';
+
+class DefaultUser {
+  static final User myself = User(
+    username: 'HandleX',
+    email: "HandleX@gmail.com",
+    password: "123456",
+    bio: "I really wanna be Google Software Engineer",
+    xh: 123456,
+    postImageUrl: "images/lake.jpg",
+    userImageUrl: "images/myself.bmp",
+    school: "野鸡大学软件学院",
+    postCount: 23,
+    followingCount: 995,
+    followersCount: 483,
+  );
+
+  static final User xp = User(
+    username: '小胖',
+    email: "xp@outlook.com",
+    password: "123456",
+    bio: "2023已上岸 - 南京大学人工智能学院在读研究生",
+    xh: 111111,
+    postImageUrl: "images/408score.png",
+    userImageUrl: "images/xp.bmp",
+    school: "南京大学人工智能学院",
+    postCount: 20,
+    followingCount: 765,
+    followersCount: 3456,
+  );
+
+  static final User dcx = User(
+    username: 'dcx',
+    email: "dcx@gmail.com",
+    password: "123456",
+    bio: "劝君猛省莫徘徊",
+    xh: 666666,
+    postImageUrl: "images/csu.jpeg",
+    userImageUrl: "images/dp.bmp",
+    school: "中南大学新能源学院",
+    postCount: 65,
+    followingCount: 765,
+    followersCount: 235,
+  );
+
+  static final User wq = User(
+    username: 'wq',
+    email: "wq@gmail.com",
+    password: "123456",
+    bio: "拿下",
+    xh: 123456,
+    postImageUrl: "images/lake.jpg",
+    userImageUrl: "images/wq.bmp",
+    school: "山东大学微电子学院",
+    postCount: 11,
+    followingCount: 124,
+    followersCount: 214,
+  );
+}
 
 class PostData {
   static final Post initPost = Post(
@@ -10,6 +68,7 @@ class PostData {
     likes: 0,
     comments: 0,
     type: 0,
+    user: DefaultUser.myself,
   );
   static final List<Post> posts = [
     Post(
@@ -21,6 +80,7 @@ class PostData {
       likes: 0,
       comments: 0,
       type: 0,
+      user: DefaultUser.myself,
     ),
     Post(
       username: '小胖',
@@ -32,6 +92,7 @@ class PostData {
       likes: 23,
       comments: 9,
       type: 0,
+      user: DefaultUser.xp,
     ),
     Post(
       username: 'der',
@@ -42,6 +103,7 @@ class PostData {
       likes: 37,
       comments: 16,
       type: 0,
+      user: DefaultUser.dcx,
     ),
     Post(
       username: 'wq',
@@ -52,6 +114,7 @@ class PostData {
       likes: 37,
       comments: 16,
       type: 0,
+      user: DefaultUser.wq,
     ),
   ];
   static final List<Post> commentPosts = [
@@ -64,6 +127,7 @@ class PostData {
       likes: 0,
       comments: 0,
       type: 1,
+      user: DefaultUser.myself,
     ),
     Post(
       username: '小胖',
@@ -74,6 +138,7 @@ class PostData {
       likes: 0,
       comments: 0,
       type: 1,
+      user: DefaultUser.xp,
     ),
     Post(
       username: '小胖',
@@ -85,6 +150,7 @@ class PostData {
       likes: 23,
       comments: 9,
       type: 1,
+      user: DefaultUser.xp,
     ),
     Post(
       username: 'der',
@@ -95,6 +161,7 @@ class PostData {
       likes: 37,
       comments: 16,
       type: 1,
+      user: DefaultUser.dcx,
     ),
     Post(
       username: 'wq',
@@ -105,6 +172,7 @@ class PostData {
       likes: 37,
       comments: 16,
       type: 1,
+      user: DefaultUser.wq,
     ),
     Post(
       username: 'wq',
@@ -115,6 +183,7 @@ class PostData {
       likes: 37,
       comments: 16,
       type: 1,
+      user: DefaultUser.wq,
     ),
     Post(
       username: '小胖',
@@ -125,6 +194,7 @@ class PostData {
       likes: 23,
       comments: 9,
       type: 1,
+      user: DefaultUser.xp,
     ),
   ];
 }

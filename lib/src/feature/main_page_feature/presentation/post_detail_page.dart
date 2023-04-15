@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import "component.dart";
-import '../domain/post_domain.dart';
-import "../data/data.dart";
+import '../../../domain/all_domain.dart';
+import '../../../constants/data.dart';
+import '../../myself_page.dart';
 
 class PostDetailPage extends StatefulWidget {
   final Post post;
@@ -109,9 +110,21 @@ class CommentBody extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           child: CustomListItemTwo(
-            thumbnail: CircleAvatar(
-              backgroundImage: AssetImage(commentPost.userImageUrl),
-              //radius: 15,
+            thumbnail: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => MyselfProfilePage(
+                            user: commentPost.user,
+                            isSinglePage: true,
+                          )),
+                );
+              },
+              child: CircleAvatar(
+                backgroundImage: AssetImage(commentPost.userImageUrl),
+                //radius: 15,
+              ),
             ),
             name: commentPost.username,
             content: commentPost.content,

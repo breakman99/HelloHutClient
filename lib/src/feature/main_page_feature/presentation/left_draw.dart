@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'component.dart';
+import '../../../domain/all_domain.dart';
+import '../../myself_page.dart';
 
 class MyMainDrawer extends StatelessWidget {
-  const MyMainDrawer({super.key});
+  final User user;
+  const MyMainDrawer({
+    super.key,
+    required this.user,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +19,22 @@ class MyMainDrawer extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            ProfileHeader(
-              name: 'HandleEx',
-              email: 'HandleEx@foxmail.com',
-              imageUrl: 'images/myself.bmp',
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => MyselfProfilePage(
+                            user: user,
+                            isSinglePage: true,
+                          )),
+                );
+              },
+              child: ProfileHeader(
+                name: user.username,
+                email: user.email,
+                imageUrl: user.userImageUrl,
+              ),
             ),
             Divider(
               color: Colors.grey, //设置分割线的颜色
@@ -25,16 +43,28 @@ class MyMainDrawer extends StatelessWidget {
               indent: 20, //设置分割线的起始缩进
               endIndent: 20, //设置分割线的结束缩进
             ),
-            ListTile(
-              leading: Icon(
-                Icons.account_circle,
-                color: Colors.black,
-              ),
-              title: Text(
-                'Profile',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => MyselfProfilePage(
+                            user: user,
+                            isSinglePage: true,
+                          )),
+                );
+              },
+              child: ListTile(
+                leading: Icon(
+                  Icons.account_circle,
+                  color: Colors.black,
+                ),
+                title: Text(
+                  'Profile',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),

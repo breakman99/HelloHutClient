@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/feature/main_page_feature/presentation/post_detail_page.dart';
-import '../domain/post_domain.dart';
-import "../data/data.dart";
+import '../../../domain/all_domain.dart';
+import '../../../constants/data.dart';
 import 'component.dart';
 
 class MainPageWidget extends StatefulWidget {

@@ -8,7 +8,7 @@ import 'src/feature/favorite_page.dart';
 import 'src/feature/main_page_feature/presentation/app_bar.dart';
 import 'src/feature/main_page_feature/presentation/main_page.dart';
 import 'src/feature/main_page_feature/presentation/left_draw.dart';
-import 'src/feature/main_page_feature/data/data.dart';
+import 'src/constants/data.dart';
 import 'src/feature/myself_page.dart';
 import 'src/feature/chat_page.dart';
 
@@ -71,7 +71,8 @@ class _MyHomePageState extends State<MyHomePage> {
     MyTestWidget1(),
     ChatListPage(),
     MyselfProfilePage(
-      post: PostData.initPost,
+      user: DefaultUser.myself,
+      isSinglePage: false,
     ),
   ];
 
@@ -127,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
             // 点击右侧按钮时的处理
           },
         ),
-        drawer: MyMainDrawer(),
+        drawer: MyMainDrawer(user: DefaultUser.myself),
         body: Builder(builder: (context) {
           return GestureDetector(
             onHorizontalDragUpdate: (details) {
