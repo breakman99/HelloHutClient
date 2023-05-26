@@ -1,13 +1,13 @@
 import '../domain/all_domain.dart';
 
 class DefaultUser {
-  static final User myself = User(
+  static User myself = User(
     username: 'HandleX',
     email: "HandleX@gmail.com",
     password: "123456",
     bio: "I really wanna be Google Software Engineer",
     xh: 123456,
-    postImageUrl: "images/lake.jpg",
+    postImageUrl: "images/school_pic.jpg",
     userImageUrl: "images/myself.bmp",
     school: "野鸡大学软件学院",
     postCount: 23,
@@ -59,37 +59,39 @@ class DefaultUser {
 }
 
 class PostData {
-  static final Post initPost = Post(
+  static Post initPost = Post(
     username: 'Null',
     school: "门头沟学院",
     content: "",
     userImageUrl: 'images/myself.bmp',
     postImageUrl: '',
     likes: 0,
+    isLiked: false,
     comments: 0,
     type: 0,
     user: DefaultUser.myself,
   );
-  static final List<Post> posts = [
+  static List<Post> posts = [
     Post(
       username: 'HandleExe',
       school: "野鸡大专人工智能学院",
-      content: "真想考个研究生啊, 唉, 我好废物, 我好羡慕",
+      content: "恭喜同学们考上研究生",
       userImageUrl: 'images/myself.bmp',
       postImageUrl: '',
-      likes: 0,
-      comments: 0,
+      likes: 4,
+      isLiked: false,
+      comments: 9,
       type: 0,
       user: DefaultUser.myself,
     ),
     Post(
       username: '小胖',
       school: "南京大学人工智能学院",
-      content: "兄弟们, 我现在是南大的爷! NJU的爷, 懂不懂NJU的含金量啊, "
-          "以后本科生以后看到我, 都对我放尊重一点! 不服的话, can can need 学历[猖狂]",
+      content: "一年的努力还是没有白费的，哈哈，南大，我来了",
       userImageUrl: 'images/xp.bmp',
       postImageUrl: 'images/408score.png',
       likes: 23,
+      isLiked: true,
       comments: 9,
       type: 0,
       user: DefaultUser.xp,
@@ -101,7 +103,8 @@ class PostData {
       userImageUrl: 'images/dp.bmp',
       postImageUrl: 'images/csu.jpeg',
       likes: 37,
-      comments: 16,
+      isLiked: false,
+      comments: 9,
       type: 0,
       user: DefaultUser.dcx,
     ),
@@ -112,12 +115,13 @@ class PostData {
       userImageUrl: 'images/wq.bmp',
       postImageUrl: 'images/lake.jpg',
       likes: 37,
-      comments: 16,
+      isLiked: false,
+      comments: 9,
       type: 0,
       user: DefaultUser.wq,
     ),
   ];
-  static final List<Post> commentPosts = [
+  static List<Post> commentPosts = [
     Post(
       username: 'HandleExe',
       school: "野鸡大专人工智能学院",
@@ -125,7 +129,8 @@ class PostData {
       userImageUrl: 'images/myself.bmp',
       postImageUrl: '',
       likes: 0,
-      comments: 0,
+      isLiked: true,
+      comments: 9,
       type: 1,
       user: DefaultUser.myself,
     ),
@@ -136,6 +141,7 @@ class PostData {
       userImageUrl: 'images/xp.bmp',
       postImageUrl: '',
       likes: 0,
+      isLiked: false,
       comments: 0,
       type: 1,
       user: DefaultUser.xp,
@@ -143,11 +149,11 @@ class PostData {
     Post(
       username: '小胖',
       school: "南京大学人工智能学院",
-      content: "兄弟们, 我现在是南大的爷! NJU的爷, 懂不懂NJU的含金量啊, "
-          "以后本科生以后看到我, 都对我放尊重一点! 不服的话, can can need 学历[猖狂]",
+      content: "作甚么呢这是",
       userImageUrl: 'images/xp.bmp',
       postImageUrl: 'images/408score.png',
       likes: 23,
+      isLiked: true,
       comments: 9,
       type: 1,
       user: DefaultUser.xp,
@@ -159,6 +165,7 @@ class PostData {
       userImageUrl: 'images/dp.bmp',
       postImageUrl: 'images/csu.jpeg',
       likes: 37,
+      isLiked: false,
       comments: 16,
       type: 1,
       user: DefaultUser.dcx,
@@ -170,6 +177,7 @@ class PostData {
       userImageUrl: 'images/wq.bmp',
       postImageUrl: 'images/lake.jpg',
       likes: 37,
+      isLiked: false,
       comments: 16,
       type: 1,
       user: DefaultUser.wq,
@@ -177,10 +185,11 @@ class PostData {
     Post(
       username: 'wq',
       school: "山东大学微电子学院",
-      content: "@小胖 怎么这么狂的",
+      content: "@小胖 牛逼",
       userImageUrl: 'images/wq.bmp',
       postImageUrl: 'images/lake.jpg',
       likes: 37,
+      isLiked: false,
       comments: 16,
       type: 1,
       user: DefaultUser.wq,
@@ -188,10 +197,11 @@ class PostData {
     Post(
       username: '小胖',
       school: "南京大学人工智能学院",
-      content: "@wq 我就狂怎么的",
+      content: "@wq 哈哈",
       userImageUrl: 'images/xp.bmp',
       postImageUrl: 'images/408score.png',
       likes: 23,
+      isLiked: false,
       comments: 9,
       type: 1,
       user: DefaultUser.xp,

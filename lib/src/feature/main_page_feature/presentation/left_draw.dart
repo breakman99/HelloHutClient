@@ -80,6 +80,9 @@ class MyMainDrawer extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              onTap: () {
+                Navigator.pushReplacementNamed(context, '/home');
+              },
             ),
             ListTile(
               leading: const Icon(
@@ -110,6 +113,10 @@ class MyMainDrawer extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushReplacementNamed(context, '/edit_profile');
+              },
             ),
           ],
         ),

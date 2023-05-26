@@ -1,13 +1,14 @@
 class Post {
-  final String username;
-  final String school;
-  final String content;
-  final String userImageUrl;
-  final String postImageUrl;
-  final int likes;
-  final int comments;
-  final int type;
-  final User user;
+  String username;
+  String school;
+  String content;
+  String userImageUrl;
+  String postImageUrl;
+  int likes;
+  bool isLiked;
+  int comments;
+  int type;
+  User user;
 
   Post({
     required this.username,
@@ -16,6 +17,7 @@ class Post {
     required this.userImageUrl,
     required this.postImageUrl,
     required this.likes,
+    required this.isLiked,
     required this.comments,
     required this.type,
     required this.user,
@@ -23,17 +25,17 @@ class Post {
 }
 
 class User {
-  final String username;
-  final String email;
-  final String password;
-  final int xh;
-  final String bio;
-  final String postImageUrl;
-  final String userImageUrl;
-  final String school;
-  final int postCount;
-  final int followingCount;
-  final int followersCount;
+  String username;
+  String email;
+  String password;
+  int xh;
+  String bio;
+  String postImageUrl;
+  String userImageUrl;
+  String school;
+  int postCount;
+  int followingCount;
+  int followersCount;
 
   User({
     required this.username,

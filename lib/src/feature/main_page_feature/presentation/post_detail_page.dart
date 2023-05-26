@@ -3,6 +3,7 @@ import "component.dart";
 import '../../../domain/all_domain.dart';
 import '../../../constants/data.dart';
 import '../../myself_page.dart';
+import '../../../constants/data.dart';
 
 class PostDetailPage extends StatefulWidget {
   final Post post;
@@ -17,6 +18,24 @@ class _PostDetailPageState extends State<PostDetailPage> {
   void initState() {
     super.initState();
     post = widget.post;
+  }
+
+  void _handleDataFromStateless(String newCommentStr) {
+    setState(() {
+      Post newPost = Post(
+          username: PostData.initPost.username,
+          school: PostData.initPost.school,
+          content: newCommentStr,
+          userImageUrl: PostData.initPost.userImageUrl,
+          postImageUrl: PostData.initPost.postImageUrl,
+          likes: PostData.initPost.likes,
+          isLiked: PostData.initPost.isLiked,
+          comments: PostData.initPost.comments,
+          type: PostData.initPost.type,
+          user: PostData.initPost.user);
+      PostData.commentPosts.add(newPost);
+    });
+    // 在这里执行 Stateful 组件中的其他逻辑
   }
 
   @override
@@ -34,30 +53,101 @@ class _PostDetailPageState extends State<PostDetailPage> {
       //     ]),
       //   ),
       // ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 3, vertical: 2),
-        child: Card(
-          elevation: 0.7,
-          child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.all(2.0),
-                child: PostBody(showCard: false, post: post),
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.symmetric(horizontal: 3, vertical: 2),
+              child: Card(
+                elevation: 0.7,
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(2.0),
+                      child: PostBody(showCard: false, post: post),
+                    ),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: posts.length,
+                      itemBuilder: (context, index) {
+                        Post post = posts[index];
+                        return CommentBody(
+                          commentPost: post,
+                        );
+                      },
+                    )
+                  ],
+                ),
               ),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: posts.length,
-                itemBuilder: (context, index) {
-                  Post post = posts[index];
-                  return CommentBody(
-                    commentPost: post,
-                  );
-                },
-              )
-            ],
+            ),
           ),
-        ),
+          CommentInput(callback: _handleDataFromStateless),
+        ],
+      ),
+    );
+  }
+}
+
+class CommentInput extends StatelessWidget {
+  final TextEditingController _textEditingController = TextEditingController();
+  final void Function(String) callback;
+
+  CommentInput({required this.callback});
+
+  void _submitComment(BuildContext context) {
+    // 获取用户输入的评论内容并处理
+    String comment = _textEditingController.text;
+    if (comment.length >= 1) {
+      // 处理评论逻辑
+      callback(comment);
+    }
+    // 清空输入框
+    _textEditingController.clear();
+    FocusScope.of(context).unfocus();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.grey[200],
+      padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: TextField(
+              controller: _textEditingController,
+              decoration: InputDecoration(
+                hintText: '写下你的评论',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                filled: true,
+                fillColor: Colors.white,
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+              ),
+              textInputAction: TextInputAction.done,
+              onSubmitted: (value) {
+                _submitComment(context);
+              },
+            ),
+          ),
+          SizedBox(width: 8.0),
+          ElevatedButton(
+            onPressed: () {
+              _submitComment(context);
+            },
+            child: Text('发送'),
+            style: ElevatedButton.styleFrom(
+              primary: Colors.blue,
+              onPrimary: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

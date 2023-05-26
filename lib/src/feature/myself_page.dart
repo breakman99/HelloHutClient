@@ -64,7 +64,9 @@ class MyselfProfilePage extends StatelessWidget {
                     right: 16,
                     child: FloatingActionButton(
                       // 编辑个人资料按钮
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/edit_profile');
+                      },
                       child: Icon(Icons.edit),
                     ),
                   ),

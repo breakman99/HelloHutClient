@@ -12,6 +12,10 @@ import 'src/constants/data.dart';
 import 'src/feature/myself_page.dart';
 import 'src/feature/chat_page.dart';
 
+import 'src/feature/login_page.dart';
+import 'src/feature/register_page.dart';
+import 'src/feature/edit_profile_page.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -32,7 +36,15 @@ class MyApp extends StatelessWidget {
             Theme.of(context).textTheme,
           ),
         ),
-        home: MyHomePage(),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => LoginPage(), // 设置登录页为初始路由
+          '/home': (context) => MyHomePage(), // 设置主页路由
+          '/register': (context) => RegisterPage(), // 添加注册页面的路由
+          '/edit_profile': (context) => EditProfilePage(), // 添加注册页面的路由
+          // 其他路由和页面
+        },
+        //home: MyHomePage(),
       ),
     );
   }

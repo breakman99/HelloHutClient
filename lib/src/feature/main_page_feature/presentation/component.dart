@@ -93,7 +93,9 @@ class _PostBodyState extends State<PostBody> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               // favorite button
-              FavoriteButton(initialLikes: widget.post.likes),
+              FavoriteButton(
+                  initialLikes: widget.post.likes,
+                  username: widget.post.username),
               SizedBox(width: 18.0),
               // comment button
               Row(
@@ -145,8 +147,9 @@ class _PostBodyState extends State<PostBody> {
 
 class FavoriteButton extends StatefulWidget {
   final int initialLikes;
+  final String username;
 
-  FavoriteButton({required this.initialLikes});
+  FavoriteButton({required this.initialLikes, required this.username});
   //const FavoriteButton({super.key});
 
   @override
@@ -156,17 +159,26 @@ class FavoriteButton extends StatefulWidget {
 class _FavoriteButtonState extends State<FavoriteButton> {
   bool _isLiked = false;
   int _likes = 0;
+  String _username = "";
 
   @override
   void initState() {
     super.initState();
     _likes = widget.initialLikes;
+    _username = widget.username;
   }
 
   void _toggleLike() {
     setState(() {
       _isLiked = !_isLiked;
       _likes += _isLiked ? 1 : -1;
+      for (var post in PostData.posts) {
+        if (post.username == _username) {
+          post.isLiked = _isLiked;
+          post.likes = _likes;
+          break;
+        }
+      }
     });
   }
 
